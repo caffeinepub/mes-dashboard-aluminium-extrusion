@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/assets/fonts/Mona-Sans.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    /* Light professional theme */
+    --background: 0.97 0.004 255;
+    --foreground: 0.15 0.015 255;
+    --card: 1.0 0 0;
+    --card-foreground: 0.15 0.015 255;
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.15 0.015 255;
+    --primary: 0.55 0.18 230;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.94 0.008 255;
+    --secondary-foreground: 0.25 0.015 255;
+    --muted: 0.94 0.006 255;
+    --muted-foreground: 0.50 0.012 255;
+    --accent: 0.92 0.01 255;
+    --accent-foreground: 0.20 0.015 255;
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.88 0.008 255;
+    --input: 0.90 0.008 255;
+    --ring: 0.55 0.18 230;
+    /* Status colors */
+    --status-good: 0.55 0.18 145;
+    --status-warning: 0.65 0.18 60;
+    --status-critical: 0.55 0.22 25;
+    /* Chart colors for light theme */
+    --chart-1: 0.55 0.18 230;
+    --chart-2: 0.55 0.18 145;
+    --chart-3: 0.65 0.18 60;
+    --chart-4: 0.60 0.20 290;
+    --chart-5: 0.55 0.22 25;
+    /* Sidebar stays dark for contrast */
+    --sidebar: 0.16 0.018 255;
+    --sidebar-foreground: 0.92 0.006 255;
+    --sidebar-primary: 0.70 0.18 200;
+    --sidebar-primary-foreground: 0.1 0.01 255;
+    --sidebar-accent: 0.24 0.018 255;
+    --sidebar-accent-foreground: 0.92 0.006 255;
+    --sidebar-border: 0.26 0.015 255;
+    --sidebar-ring: 0.70 0.18 200;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Mona Sans", system-ui, sans-serif;
+    font-feature-settings: "ss01" on, "ss02" on;
+  }
+
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+@layer utilities {
+  .status-good {
+    color: oklch(var(--status-good));
+  }
+  .status-warning {
+    color: oklch(var(--status-warning));
+  }
+  .status-critical {
+    color: oklch(var(--status-critical));
+  }
+  .bg-status-good {
+    background-color: oklch(var(--status-good) / 0.12);
+    border-color: oklch(var(--status-good) / 0.3);
+  }
+  .bg-status-warning {
+    background-color: oklch(var(--status-warning) / 0.12);
+    border-color: oklch(var(--status-warning) / 0.3);
+  }
+  .bg-status-critical {
+    background-color: oklch(var(--status-critical) / 0.12);
+    border-color: oklch(var(--status-critical) / 0.3);
+  }
+  .text-status-good {
+    color: oklch(var(--status-good));
+  }
+  .text-status-warning {
+    color: oklch(var(--status-warning));
+  }
+  .text-status-critical {
+    color: oklch(var(--status-critical));
+  }
+  .kpi-value {
+    font-family: "JetBrains Mono", monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .industrial-grid {
+    background-image: 
+      linear-gradient(oklch(0.85 0.008 255 / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.85 0.008 255 / 0.5) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .glow-blue {
+    box-shadow: 0 0 20px oklch(0.55 0.18 230 / 0.10), 0 0 40px oklch(0.55 0.18 230 / 0.04);
+  }
+}
