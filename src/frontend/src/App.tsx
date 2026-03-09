@@ -105,9 +105,9 @@ function SummaryBar() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center gap-6 overflow-x-auto">
+      <div className="flex items-center gap-4 overflow-x-auto">
         {SKELETON_KEYS.map((k) => (
-          <Skeleton key={k} className="h-4 w-20 flex-shrink-0" />
+          <Skeleton key={k} className="h-3.5 w-16 flex-shrink-0" />
         ))}
       </div>
     );
@@ -116,7 +116,7 @@ function SummaryBar() {
   const displayStats = stats ?? FALLBACK_STATS;
 
   return (
-    <div className="flex items-center gap-4 overflow-x-auto text-xs">
+    <div className="flex items-center gap-3 overflow-x-auto text-xs">
       <StatPill
         label="OEE"
         value={`${displayStats.oee.toFixed(1)}%`}
@@ -129,7 +129,7 @@ function SummaryBar() {
         }
       />
       <StatPill
-        label="Production"
+        label="Prod"
         value={`${(displayStats.totalProductionToday / 1000).toFixed(1)} MT`}
         color="good"
       />
@@ -145,12 +145,12 @@ function SummaryBar() {
         }
       />
       <StatPill
-        label="Active Presses"
+        label="Presses"
         value={String(displayStats.activePressCount)}
         color="good"
       />
       <StatPill
-        label="Energy/kg"
+        label="Nrg/kg"
         value={`₹${displayStats.energyCostPerKg.toFixed(2)}`}
         color={
           displayStats.energyCostPerKg <= 10
@@ -161,7 +161,7 @@ function SummaryBar() {
         }
       />
       <StatPill
-        label="Breakdown"
+        label="Brkdwn"
         value={`${displayStats.breakdownHours.toFixed(1)}h`}
         color={
           displayStats.breakdownHours <= 2
@@ -191,7 +191,7 @@ function StatPill({
         ? "text-status-warning"
         : "text-status-critical";
   return (
-    <div className="flex items-center gap-1.5 flex-shrink-0">
+    <div className="flex items-center gap-1 flex-shrink-0">
       <span className="text-muted-foreground">{label}:</span>
       <span className={cn("kpi-value font-bold", colorClass)}>{value}</span>
     </div>
@@ -255,18 +255,18 @@ export default function App() {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-0 left-0 h-full z-30 w-60 bg-sidebar border-r border-sidebar-border flex flex-col transition-transform duration-300 ease-in-out",
+          "fixed top-0 left-0 h-full z-30 w-56 bg-sidebar border-r border-sidebar-border flex flex-col transition-transform duration-300 ease-in-out",
           "lg:relative lg:translate-x-0",
           sidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         {/* Logo */}
-        <div className="flex items-center gap-3 px-4 py-5 border-b border-sidebar-border">
-          <div className="w-8 h-8 rounded-lg bg-sidebar-primary/15 border border-sidebar-primary/30 flex items-center justify-center flex-shrink-0">
-            <Activity className="w-4 h-4 text-sidebar-primary" />
+        <div className="flex items-center gap-2.5 px-3 py-3 border-b border-sidebar-border">
+          <div className="w-7 h-7 rounded-md bg-sidebar-primary/15 border border-sidebar-primary/30 flex items-center justify-center flex-shrink-0">
+            <Activity className="w-3.5 h-3.5 text-sidebar-primary" />
           </div>
-          <div>
-            <p className="text-sm font-bold text-sidebar-foreground leading-tight">
+          <div className="min-w-0">
+            <p className="text-xs font-bold text-sidebar-foreground leading-tight truncate">
               MES Dashboard
             </p>
             <p className="text-[10px] text-sidebar-foreground/50 leading-tight">
@@ -275,7 +275,7 @@ export default function App() {
           </div>
           <button
             type="button"
-            className="ml-auto lg:hidden text-sidebar-foreground/60 hover:text-sidebar-foreground"
+            className="ml-auto lg:hidden text-sidebar-foreground/60 hover:text-sidebar-foreground flex-shrink-0"
             onClick={closeSidebar}
           >
             <X className="w-4 h-4" />
@@ -283,11 +283,9 @@ export default function App() {
         </div>
 
         {/* Live indicator */}
-        <div className="px-4 py-2 border-b border-sidebar-border/50">
-          <div className="flex items-center gap-2">
-            <div className="relative flex items-center">
-              <Circle className="w-2 h-2 fill-green-400 text-green-400 animate-pulse" />
-            </div>
+        <div className="px-3 py-1.5 border-b border-sidebar-border/50">
+          <div className="flex items-center gap-1.5">
+            <Circle className="w-1.5 h-1.5 fill-green-400 text-green-400 animate-pulse" />
             <span className="text-[10px] text-sidebar-foreground/50 uppercase tracking-wider">
               Live Data
             </span>
@@ -295,7 +293,7 @@ export default function App() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
+        <nav className="flex-1 px-1.5 py-2 space-y-0.5 overflow-y-auto">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive = activeDashboard === item.key;
@@ -306,7 +304,7 @@ export default function App() {
                 onClick={() => handleNavClick(item.key)}
                 data-ocid={item.ocid}
                 className={cn(
-                  "w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition-all duration-150 group",
+                  "w-full flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs transition-all duration-150 group",
                   isActive
                     ? "bg-sidebar-primary/15 text-sidebar-primary border border-sidebar-primary/25 font-medium"
                     : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground border border-transparent",
@@ -314,7 +312,7 @@ export default function App() {
               >
                 <Icon
                   className={cn(
-                    "w-4 h-4 flex-shrink-0 transition-colors",
+                    "w-3.5 h-3.5 flex-shrink-0 transition-colors",
                     isActive
                       ? "text-sidebar-primary"
                       : "text-sidebar-foreground/50 group-hover:text-sidebar-foreground",
@@ -330,8 +328,8 @@ export default function App() {
         </nav>
 
         {/* Footer */}
-        <div className="px-4 py-3 border-t border-sidebar-border">
-          <p className="text-[10px] text-sidebar-foreground/40 text-center">
+        <div className="px-3 py-2 border-t border-sidebar-border">
+          <p className="text-[9px] text-sidebar-foreground/40 text-center">
             © {new Date().getFullYear()}.{" "}
             <a
               href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
@@ -348,21 +346,21 @@ export default function App() {
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top header */}
-        <header className="flex-shrink-0 bg-white/90 backdrop-blur border-b border-border px-4 py-3 shadow-sm">
-          <div className="flex items-center gap-3">
+        <header className="flex-shrink-0 bg-white/90 backdrop-blur border-b border-border px-3 py-2 shadow-sm">
+          <div className="flex items-center gap-2">
             {/* Mobile hamburger */}
             <button
               type="button"
               className="lg:hidden flex-shrink-0 text-muted-foreground hover:text-foreground"
               onClick={openSidebar}
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-4 h-4" />
             </button>
 
             {/* Dashboard title */}
-            <div className="flex items-center gap-2 mr-4">
-              <ActiveIcon className="w-4 h-4 text-primary flex-shrink-0" />
-              <h1 className="text-sm font-semibold text-foreground truncate">
+            <div className="flex items-center gap-1.5 mr-3">
+              <ActiveIcon className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              <h1 className="text-xs font-semibold text-foreground truncate">
                 {activeNav.label}
               </h1>
             </div>
@@ -373,7 +371,7 @@ export default function App() {
             </div>
 
             {/* Time period filter */}
-            <div className="flex items-center gap-1 ml-auto flex-shrink-0 bg-muted rounded-lg p-1">
+            <div className="flex items-center gap-0.5 ml-auto flex-shrink-0 bg-muted rounded-md p-0.5">
               {TIME_PERIODS.map((tp) => (
                 <button
                   type="button"
@@ -381,7 +379,7 @@ export default function App() {
                   data-ocid={tp.ocid}
                   onClick={() => setPeriod(tp.key)}
                   className={cn(
-                    "px-3 py-1 text-xs font-medium rounded-md transition-all duration-150",
+                    "px-2.5 py-1 text-[11px] font-medium rounded transition-all duration-150",
                     period === tp.key
                       ? "bg-primary text-primary-foreground shadow-sm"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent",
@@ -394,17 +392,17 @@ export default function App() {
           </div>
 
           {/* Mobile summary bar */}
-          <div className="mt-2 md:hidden">
+          <div className="mt-1.5 md:hidden">
             <SummaryBar />
           </div>
         </header>
 
         {/* Dashboard content */}
-        <main className="flex-1 overflow-y-auto px-4 py-6 bg-background">
+        <main className="flex-1 overflow-y-auto px-3 py-3 bg-background">
           {initMutation.isPending ? (
-            <div className="flex flex-col items-center justify-center h-64 gap-4">
-              <div className="w-10 h-10 rounded-full border-2 border-primary border-t-transparent animate-spin" />
-              <p className="text-sm text-muted-foreground">
+            <div className="flex flex-col items-center justify-center h-48 gap-3">
+              <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+              <p className="text-xs text-muted-foreground">
                 Initializing dashboard data...
               </p>
             </div>

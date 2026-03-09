@@ -183,7 +183,7 @@ function TempCard({ kpi, index }: { kpi: Kpi | undefined; index: number }) {
   return (
     <div
       className={cn(
-        "rounded-lg border p-4 transition-all bg-white shadow-sm",
+        "rounded-md border p-3 transition-all bg-white shadow-sm",
         isNormal
           ? "border-status-good/30"
           : isWarning
@@ -320,7 +320,7 @@ export function ProductionManagerDashboard({ period }: Props) {
   };
 
   return (
-    <div className="space-y-8" data-ocid="dashboard.productionmanager.section">
+    <div className="space-y-4" data-ocid="dashboard.productionmanager.section">
       {/* Press Performance */}
       <section>
         <SectionHeader title="Press Performance" icon={Zap} count={5} />
@@ -329,7 +329,7 @@ export function ProductionManagerDashboard({ period }: Props) {
 
       {/* Temperature KPIs */}
       <section>
-        <SectionHeader title="Temperature KPIs" icon={Thermometer} count={3} />
+        <SectionHeader title="Temperature" icon={Thermometer} count={3} />
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {TEMP_NAMES.map((n) => (
@@ -348,7 +348,7 @@ export function ProductionManagerDashboard({ period }: Props) {
 
       {/* Process KPIs */}
       <section>
-        <SectionHeader title="Process KPIs" icon={Settings} count={3} />
+        <SectionHeader title="Process" icon={Settings} count={3} />
         {renderGrid(PROCESS_NAMES, 8, 4)}
       </section>
 
@@ -360,15 +360,15 @@ export function ProductionManagerDashboard({ period }: Props) {
 
       {/* Scrap KPIs */}
       <section>
-        <SectionHeader title="Scrap KPIs" icon={Scissors} count={3} />
+        <SectionHeader title="Scrap" icon={Scissors} count={3} />
         {renderGrid(SCRAP_NAMES, 14, 4)}
       </section>
 
       {/* Production Trend */}
       <section>
         <SectionHeader title="Production Trend" icon={Zap} />
-        <div className="bg-white border border-border rounded-lg p-4 shadow-sm">
-          <ResponsiveContainer width="100%" height={200}>
+        <div className="bg-white border border-border rounded-lg p-3 shadow-sm">
+          <ResponsiveContainer width="100%" height={170}>
             <AreaChart
               data={activeChart}
               margin={{ top: 4, right: 8, left: -16, bottom: 0 }}

@@ -274,13 +274,13 @@ function OEEGauge({
 
   return (
     <div
-      className="bg-white border border-border rounded-lg p-4 flex flex-col items-center gap-2 shadow-sm"
+      className="bg-white border border-border rounded-lg p-3 flex flex-col items-center gap-1.5 shadow-sm"
       data-ocid={dataOcid}
     >
       <span className="text-xs text-muted-foreground uppercase tracking-wider text-center">
         {label}
       </span>
-      <span className="kpi-value text-3xl font-bold" style={{ color }}>
+      <span className="kpi-value text-2xl font-bold" style={{ color }}>
         {value.toFixed(1)}%
       </span>
       <Progress
@@ -388,10 +388,10 @@ export function PlantHeadDashboard({ period }: Props) {
   };
 
   return (
-    <div className="space-y-8" data-ocid="dashboard.planthead.section">
+    <div className="space-y-4" data-ocid="dashboard.planthead.section">
       {/* Production */}
       <section>
-        <SectionHeader title="Production KPIs" icon={Factory} count={5} />
+        <SectionHeader title="Production" icon={Factory} count={5} />
         {renderGrid(PRODUCTION_NAMES, 0, 5)}
       </section>
 
@@ -423,19 +423,19 @@ export function PlantHeadDashboard({ period }: Props) {
 
       {/* Press KPIs */}
       <section>
-        <SectionHeader title="Press KPIs" icon={Cog} count={5} />
+        <SectionHeader title="Press" icon={Cog} count={5} />
         {renderGrid(PRESS_NAMES, 4, 5)}
       </section>
 
       {/* Die KPIs */}
       <section>
-        <SectionHeader title="Die KPIs" icon={RefreshCw} count={4} />
+        <SectionHeader title="Die" icon={RefreshCw} count={4} />
         {renderGrid(DIE_NAMES, 9, 4)}
       </section>
 
       {/* Downtime */}
       <section>
-        <SectionHeader title="Downtime KPIs" icon={Clock} count={4} />
+        <SectionHeader title="Downtime" icon={Clock} count={4} />
         {renderGrid(DOWNTIME_NAMES, 13, 4)}
       </section>
 
@@ -452,8 +452,8 @@ export function PlantHeadDashboard({ period }: Props) {
       {/* Press-wise Chart */}
       <section>
         <SectionHeader title="Press-Wise Output & OEE" icon={BarChart2} />
-        <div className="bg-white border border-border rounded-lg p-4 shadow-sm">
-          <ResponsiveContainer width="100%" height={220}>
+        <div className="bg-white border border-border rounded-lg p-3 shadow-sm">
+          <ResponsiveContainer width="100%" height={180}>
             <BarChart
               data={activePressData}
               margin={{ top: 4, right: 8, left: -16, bottom: 0 }}

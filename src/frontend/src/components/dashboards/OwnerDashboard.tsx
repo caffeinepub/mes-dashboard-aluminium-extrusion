@@ -366,24 +366,24 @@ export function OwnerDashboard({ period }: Props) {
   const activeChart = chartData.length > 0 ? chartData : FALLBACK_CHART;
 
   return (
-    <div className="space-y-8" data-ocid="dashboard.owner.section">
+    <div className="space-y-4" data-ocid="dashboard.owner.section">
       {/* Financial KPIs */}
       <section>
-        <SectionHeader title="Financial KPIs" icon={DollarSign} count={8} />
+        <SectionHeader title="Financial" icon={DollarSign} count={8} />
         {renderKpiGrid(activeKpis, FINANCIAL_NAMES, isLoading, 0)}
       </section>
 
       {/* Production KPIs */}
       <section>
-        <SectionHeader title="Production KPIs" icon={Factory} count={8} />
+        <SectionHeader title="Production" icon={Factory} count={8} />
         {renderKpiGrid(activeKpis, PRODUCTION_NAMES, isLoading, 8)}
       </section>
 
       {/* Production Trend Chart */}
       <section>
         <SectionHeader title="Production Trend — 30 Days" icon={TrendingUp} />
-        <div className="bg-white border border-border rounded-lg p-4 shadow-sm">
-          <ResponsiveContainer width="100%" height={200}>
+        <div className="bg-white border border-border rounded-lg p-3 shadow-sm">
+          <ResponsiveContainer width="100%" height={170}>
             <AreaChart
               data={activeChart}
               margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
@@ -438,13 +438,13 @@ export function OwnerDashboard({ period }: Props) {
 
       {/* Quality */}
       <section>
-        <SectionHeader title="Quality KPIs" icon={Star} count={4} />
+        <SectionHeader title="Quality" icon={Star} count={4} />
         {renderKpiGrid(activeKpis, QUALITY_NAMES, isLoading, 22)}
       </section>
 
       {/* Delivery */}
       <section>
-        <SectionHeader title="Delivery KPIs" icon={Truck} count={4} />
+        <SectionHeader title="Delivery" icon={Truck} count={4} />
         {renderKpiGrid(activeKpis, DELIVERY_NAMES, isLoading, 26)}
       </section>
 

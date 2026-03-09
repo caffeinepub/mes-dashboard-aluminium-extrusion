@@ -255,24 +255,24 @@ export function QualityDashboard({ period }: Props) {
   };
 
   return (
-    <div className="space-y-8" data-ocid="dashboard.quality.section">
+    <div className="space-y-4" data-ocid="dashboard.quality.section">
       {/* Quality KPIs */}
       <section>
-        <SectionHeader title="Quality KPIs" icon={Star} count={3} />
+        <SectionHeader title="Quality" icon={Star} count={3} />
         {renderGrid(QUALITY_NAMES, 0, 3)}
       </section>
 
       {/* Defect KPIs */}
       <section>
-        <SectionHeader title="Defect KPIs" icon={AlertTriangle} count={5} />
+        <SectionHeader title="Defect" icon={AlertTriangle} count={5} />
         {renderGrid(DEFECT_NAMES, 3, 5)}
       </section>
 
       {/* Defect Pareto Chart */}
       <section>
         <SectionHeader title="Defect Pareto Chart" icon={AlertTriangle} />
-        <div className="bg-white border border-border rounded-lg p-4 shadow-sm">
-          <ResponsiveContainer width="100%" height={220}>
+        <div className="bg-white border border-border rounded-lg p-3 shadow-sm">
+          <ResponsiveContainer width="100%" height={180}>
             <BarChart
               data={activeDefects}
               margin={{ top: 4, right: 8, left: -16, bottom: 20 }}
@@ -311,15 +311,15 @@ export function QualityDashboard({ period }: Props) {
 
       {/* Inspection */}
       <section>
-        <SectionHeader title="Inspection KPIs" icon={Microscope} count={2} />
+        <SectionHeader title="Inspection" icon={Microscope} count={2} />
         {renderGrid(INSPECTION_NAMES, 8, 2)}
       </section>
 
       {/* Quality Trend */}
       <section>
         <SectionHeader title="Quality Trend" icon={TrendingUp} />
-        <div className="bg-white border border-border rounded-lg p-4 shadow-sm">
-          <ResponsiveContainer width="100%" height={200}>
+        <div className="bg-white border border-border rounded-lg p-3 shadow-sm">
+          <ResponsiveContainer width="100%" height={170}>
             <LineChart
               data={activeTrend}
               margin={{ top: 4, right: 8, left: -16, bottom: 0 }}

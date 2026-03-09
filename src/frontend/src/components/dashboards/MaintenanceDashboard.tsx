@@ -145,7 +145,7 @@ function AssetHealthBar({
 
   return (
     <div
-      className="bg-white border border-border rounded-lg p-4 shadow-sm"
+      className="bg-white border border-border rounded-lg p-3 shadow-sm"
       data-ocid={dataOcid}
     >
       <div className="flex items-center justify-between mb-2">
@@ -246,23 +246,23 @@ export function MaintenanceDashboard({ period }: Props) {
     .slice(0, 5);
 
   return (
-    <div className="space-y-8" data-ocid="dashboard.maintenance.section">
+    <div className="space-y-4" data-ocid="dashboard.maintenance.section">
       {/* Reliability */}
       <section>
-        <SectionHeader title="Reliability KPIs" icon={Activity} count={3} />
+        <SectionHeader title="Reliability" icon={Activity} count={3} />
         {renderGrid(RELIABILITY_NAMES, 0, 3)}
       </section>
 
       {/* Breakdown */}
       <section>
-        <SectionHeader title="Breakdown KPIs" icon={AlertOctagon} count={3} />
+        <SectionHeader title="Breakdown" icon={AlertOctagon} count={3} />
         {renderGrid(BREAKDOWN_NAMES, 3, 3)}
       </section>
 
       {/* Top Downtime */}
       <section>
         <SectionHeader title="Top Downtime Events" icon={AlertOctagon} />
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           {topEvents.map((e, i) => {
             const pct = Math.min(
               (e.duration / (topEvents[0]?.duration || 1)) * 100,
@@ -271,7 +271,7 @@ export function MaintenanceDashboard({ period }: Props) {
             return (
               <div
                 key={`${e.equipmentName}-${i}`}
-                className="bg-white border border-border rounded-lg p-3 flex items-center gap-3 shadow-sm"
+                className="bg-white border border-border rounded-md p-2.5 flex items-center gap-2.5 shadow-sm"
                 data-ocid={`maintenance.item.${i + 1}`}
               >
                 <span className="text-xs text-muted-foreground w-4 font-mono">

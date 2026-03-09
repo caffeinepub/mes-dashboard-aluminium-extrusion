@@ -18,19 +18,19 @@ const statusConfig = {
   good: {
     badge: "bg-status-good text-status-good",
     dot: "bg-status-good",
-    label: "NORMAL",
+    label: "OK",
     glow: "border-status-good/20",
   },
   warning: {
     badge: "bg-status-warning text-status-warning",
     dot: "bg-status-warning",
-    label: "WARNING",
+    label: "WARN",
     glow: "border-status-warning/20",
   },
   critical: {
     badge: "bg-status-critical text-status-critical",
     dot: "bg-status-critical",
-    label: "CRITICAL",
+    label: "CRIT",
     glow: "border-status-critical/20",
   },
 };
@@ -54,12 +54,12 @@ export function KPICard({
   if (isLoading) {
     return (
       <div
-        className={cn("rounded-lg border border-border bg-card p-4", className)}
+        className={cn("rounded-md border border-border bg-card p-3", className)}
         {...props}
       >
-        <Skeleton className="h-3 w-24 mb-3" />
-        <Skeleton className="h-8 w-20 mb-2" />
-        <Skeleton className="h-3 w-16" />
+        <Skeleton className="h-2.5 w-20 mb-2" />
+        <Skeleton className="h-6 w-16 mb-1.5" />
+        <Skeleton className="h-2.5 w-12" />
       </div>
     );
   }
@@ -67,31 +67,32 @@ export function KPICard({
   return (
     <div
       className={cn(
-        "relative rounded-lg border bg-card p-4 transition-all duration-200",
-        "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5",
+        "relative rounded-md border bg-card p-3 transition-all duration-200",
+        "hover:border-primary/30 hover:shadow-md hover:shadow-primary/5",
         cfg.glow,
         className,
       )}
       {...props}
     >
-      {/* Status dot */}
-      <div className="flex items-start justify-between mb-2">
-        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider leading-none truncate pr-2 flex-1">
+      {/* Name + status dot */}
+      <div className="flex items-start justify-between mb-1.5">
+        <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider leading-tight pr-1.5 flex-1 line-clamp-2">
           {name}
         </span>
         <div
-          className={cn("w-2 h-2 rounded-full flex-shrink-0 mt-0.5", cfg.dot)}
+          className={cn(
+            "w-1.5 h-1.5 rounded-full flex-shrink-0 mt-0.5",
+            cfg.dot,
+          )}
         />
       </div>
 
       {/* Value */}
-      <div
-        className={cn("flex items-baseline gap-1 mb-2", large ? "mt-1" : "")}
-      >
+      <div className="flex items-baseline gap-1 mb-1.5">
         <span
           className={cn(
             "kpi-value font-bold text-foreground leading-none",
-            large ? "text-3xl" : "text-2xl",
+            large ? "text-2xl" : "text-xl",
           )}
         >
           {typeof value === "number"
@@ -99,7 +100,7 @@ export function KPICard({
             : value}
         </span>
         {unit && (
-          <span className="text-xs text-muted-foreground font-medium">
+          <span className="text-[10px] text-muted-foreground font-medium">
             {unit}
           </span>
         )}
@@ -110,26 +111,26 @@ export function KPICard({
         {!trendFlat ? (
           <div
             className={cn(
-              "flex items-center gap-1 text-xs font-medium",
+              "flex items-center gap-0.5 text-[10px] font-medium",
               trendUp ? "text-status-good" : "text-status-critical",
             )}
           >
             {trendUp ? (
-              <TrendingUp className="w-3 h-3" />
+              <TrendingUp className="w-2.5 h-2.5" />
             ) : (
-              <TrendingDown className="w-3 h-3" />
+              <TrendingDown className="w-2.5 h-2.5" />
             )}
             <span>{trendAbs.toFixed(1)}%</span>
           </div>
         ) : (
-          <div className="flex items-center gap-1 text-xs text-muted-foreground">
-            <Minus className="w-3 h-3" />
+          <div className="flex items-center gap-0.5 text-[10px] text-muted-foreground">
+            <Minus className="w-2.5 h-2.5" />
             <span>0.0%</span>
           </div>
         )}
         <span
           className={cn(
-            "text-[10px] font-bold px-1.5 py-0.5 rounded tracking-wider border",
+            "text-[9px] font-bold px-1 py-0.5 rounded tracking-wider border",
             cfg.badge,
           )}
         >
@@ -142,10 +143,10 @@ export function KPICard({
 
 export function KPICardSkeleton() {
   return (
-    <div className="rounded-lg border border-border bg-card p-4">
-      <Skeleton className="h-3 w-24 mb-3" />
-      <Skeleton className="h-8 w-20 mb-2" />
-      <Skeleton className="h-3 w-16" />
+    <div className="rounded-md border border-border bg-card p-3">
+      <Skeleton className="h-2.5 w-20 mb-2" />
+      <Skeleton className="h-6 w-16 mb-1.5" />
+      <Skeleton className="h-2.5 w-12" />
     </div>
   );
 }

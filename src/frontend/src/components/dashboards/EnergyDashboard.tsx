@@ -146,8 +146,8 @@ function ComparisonCard({
   gasKpi: { value: number; unit: string } | undefined;
 }) {
   return (
-    <div className="bg-white border border-border rounded-lg p-4 shadow-sm">
-      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
+    <div className="bg-white border border-border rounded-lg p-3 shadow-sm">
+      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
         {title}
       </p>
       <div className="grid grid-cols-2 gap-3">
@@ -251,16 +251,16 @@ export function EnergyDashboard({ period }: Props) {
   };
 
   return (
-    <div className="space-y-8" data-ocid="dashboard.energy.section">
+    <div className="space-y-4" data-ocid="dashboard.energy.section">
       {/* Electricity */}
       <section>
-        <SectionHeader title="Electricity KPIs" icon={Zap} count={3} />
+        <SectionHeader title="Electricity" icon={Zap} count={3} />
         {renderGrid(ELECTRICITY_NAMES, 0, 3)}
       </section>
 
       {/* Gas */}
       <section>
-        <SectionHeader title="Gas KPIs" icon={Flame} count={2} />
+        <SectionHeader title="Gas" icon={Flame} count={2} />
         {renderGrid(GAS_NAMES, 3, 2)}
       </section>
 
@@ -312,8 +312,8 @@ export function EnergyDashboard({ period }: Props) {
       {/* Energy Trend */}
       <section>
         <SectionHeader title="Energy Consumption Trend" icon={Zap} />
-        <div className="bg-white border border-border rounded-lg p-4 shadow-sm">
-          <ResponsiveContainer width="100%" height={220}>
+        <div className="bg-white border border-border rounded-lg p-3 shadow-sm">
+          <ResponsiveContainer width="100%" height={180}>
             <AreaChart
               data={activeTrend}
               margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
